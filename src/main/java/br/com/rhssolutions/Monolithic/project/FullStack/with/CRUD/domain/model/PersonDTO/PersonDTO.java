@@ -11,7 +11,7 @@ public record PersonDTO(
         Long id,
 
         @NotBlank(message = "Name cannot be null or empty")
-        String name,
+        String firstName,
 
         @NotBlank(message = "Last name cannot be null or empty")
         String lastName,
@@ -33,7 +33,7 @@ public record PersonDTO(
 ) {
     public PersonDTO(Person person) {
         this(person.getId(),
-                person.getName(),
+                person.getFirstName(),
                 person.getLastName(),
                 person.getBirthDate(),
                 person.getEmail(),
