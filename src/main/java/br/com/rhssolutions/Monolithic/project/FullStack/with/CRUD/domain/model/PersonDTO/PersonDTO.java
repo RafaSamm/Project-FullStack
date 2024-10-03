@@ -4,7 +4,6 @@ import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.domain.model.P
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 public record PersonDTO(

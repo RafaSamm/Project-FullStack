@@ -6,6 +6,7 @@ import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.service.Person
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,10 @@ public class PersonController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Person> createPerson(@RequestBody @Valid PersonDTO person) {
+    public ResponseEntity<Person> createPerson(@Valid @RequestBody PersonDTO person, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(personService.create(person));
     }
 
