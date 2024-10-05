@@ -4,6 +4,7 @@ import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.domain.model.P
 import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.domain.model.PersonDTO.PersonDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface PersonService {
@@ -14,7 +15,7 @@ public interface PersonService {
 
     Person update(Long id, PersonDTO person);
 
-    void delete(Long id);
+    Map<String, Boolean> delete(Long id);
 
     List<PersonDTO> findAll();
 }

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/person")
@@ -46,6 +47,11 @@ public class PersonController {
     @GetMapping("/{id}")
     public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(personService.findPersonById(id).get());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Boolean>> deletePerson(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(personService.delete(id));
     }
 
 
