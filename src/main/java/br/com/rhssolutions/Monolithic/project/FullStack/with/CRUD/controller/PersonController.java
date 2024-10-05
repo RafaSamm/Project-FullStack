@@ -30,9 +30,22 @@ public class PersonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personService.create(person));
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable Long id, @Valid @RequestBody PersonDTO person, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(personService.update(id, person));
+    }
+
     @GetMapping
     public ResponseEntity<List<PersonDTO>> findAllPerson() {
         return ResponseEntity.status(HttpStatus.OK).body(personService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findPersonById(id).get());
     }
 
 

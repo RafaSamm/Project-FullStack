@@ -4,14 +4,15 @@ import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.domain.model.P
 import br.com.rhssolutions.Monolithic.project.FullStack.with.CRUD.domain.model.PersonDTO.PersonDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonService {
 
     Person create(PersonDTO person);
 
-    PersonDTO findById(Long id);
+    Optional<PersonDTO> findPersonById(Long id);
 
-    Person update(PersonDTO person, Long id);
+    Person update(Long id, PersonDTO person);
 
     void delete(Long id);
 

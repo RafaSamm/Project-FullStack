@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -32,13 +33,23 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public PersonDTO findById(Long id) {
-        return null;
+    public Optional<PersonDTO> findPersonById(Long id) {
+        var person = personRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new IllegalArgumentException("Person not found by ID");
+        } else {
+            PersonDTO personDTO = new PersonDTO(person.get());
+            BeanUtils.copyProperties(person, personDTO);
+            return Optional.of(personDTO);
+        }
     }
 
     @Override
-    public Person update(PersonDTO person, Long id) {
-        return null;
+    public Person update(Long id, PersonDTO personDTO) {
+        var person = personRepository.findById(id).orElseThrow(()
+                -> new IllegalArgumentException("Person not found by ID"));
+        BeanUtils.copyProperties(personDTO, person);
+        return personRepository.save(person);
     }
 
     @Override
