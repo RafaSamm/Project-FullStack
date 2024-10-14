@@ -17,8 +17,8 @@ public class DocConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI().info(new Info()
-                .title("CRUD API")
-                .description("CRUD API for Monolithic Project")
+                .title("CRUD API WITH ANGULAR FRONT")
+                .description("Monolithic Project and register of people")
                 .version("1.0.0")
                 .contact(new Contact()
                         .name("RHSSolutions - Software Innovation and Quality")
